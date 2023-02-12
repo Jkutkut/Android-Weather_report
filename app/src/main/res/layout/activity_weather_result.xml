@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin"
+    android:background="@color/bg"
+    tools:context=".WeatherResult">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Europe/Madrid"
+        android:textSize="@dimen/title_text_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtvCity"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/clear_day"
+        app:layout_constraintTop_toBottomOf="@id/txtvCity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/imgvWeather"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="11:07p.m."
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/imgvWeather"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtvTime"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="2"
+        android:textSize="@dimen/degree_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtvDegree"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:paddingTop="@dimen/margin"
+        android:adjustViewBounds="true"
+        android:src="@drawable/degree"
+        app:layout_constraintTop_toBottomOf="@id/txtvTime"
+        app:layout_constraintStart_toEndOf="@id/txtvDegree"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginStart="@dimen/humidity_rain_margin"
+        android:text="Humidity:"
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvDegree"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/txtvHumidity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginEnd="@dimen/humidity_rain_margin"
+        android:text="Rain:"
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvDegree"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtvRain"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="0%"
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvHumidity"
+        app:layout_constraintStart_toStartOf="@id/txtvHumidity"
+        app:layout_constraintEnd_toEndOf="@id/txtvHumidity"
+        android:id="@+id/txtvHumidityValue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="0%"
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvRain"
+        app:layout_constraintStart_toStartOf="@id/txtvRain"
+        app:layout_constraintEnd_toEndOf="@id/txtvRain"
+        android:id="@+id/txtvRainValue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        android:text="Mostly cloudy"
+        android:textSize="@dimen/sub_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/txtvHumidityValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/txtvWeather"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
