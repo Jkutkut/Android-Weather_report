@@ -2,23 +2,36 @@ package com.jkutkut.android_weather_report;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jkutkut.android_weather_report.model.WeatherReport;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+
 public class WeatherResult extends AppCompatActivity {
 
     public static final String KEY_OBJ = "KEY_OBJ";
 
-    private TextView txtvCity;
-    private ImageView imgvWeather;
-    private TextView txtvTime;
-    private TextView txtvDegree;
-    private TextView txtvHumidityValue;
-    private TextView txtvRainValue;
-    private TextView txtvWeather;
+    private static final HashMap<String, Integer> imgs = new HashMap<String, Integer>() {{
+        put("clear-day", R.drawable.clear_day);
+        put("clear-night", R.drawable.clear_night);
+        put("cloudy", R.drawable.cloudy);
+        put("cloudy_night", R.drawable.cloudy_night);
+        put("fog", R.drawable.fog);
+        put("partly-cloudy", R.drawable.partly_cloudy);
+        put("rain", R.drawable.rain);
+        put("sleet", R.drawable.sleet);
+        put("snow", R.drawable.snow);
+        put("sunny", R.drawable.sunny);
+        put("wind", R.drawable.wind);
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +40,47 @@ public class WeatherResult extends AppCompatActivity {
 
         WeatherReport wr = (WeatherReport) getIntent().getSerializableExtra(KEY_OBJ);
 
-        txtvCity = findViewById(R.id.txtvCity);
-        imgvWeather = findViewById(R.id.imgvWeather);
-        txtvTime = findViewById(R.id.txtvTime);
-        txtvDegree = findViewById(R.id.txtvDegree);
-        txtvHumidityValue = findViewById(R.id.txtvHumidityValue);
-        txtvRainValue = findViewById(R.id.txtvRainValue);
-        txtvWeather = findViewById(R.id.txtvWeather);
+        final TextView txtvCity = findViewById(R.id.txtvCity);
+        final ImageView imgvWeather = findViewById(R.id.imgvWeather);
+        final TextView txtvTime = findViewById(R.id.txtvTime);
+        final TextView txtvDegree = findViewById(R.id.txtvDegree);
+        final TextView txtvHumidityValue = findViewById(R.id.txtvHumidityValue);
+        final TextView txtvRainValue = findViewById(R.id.txtvRainValue);
+        final TextView txtvWeather = findViewById(R.id.txtvWeather);
+
+        final Locale locale = new Locale("es", "ES");
 
         txtvCity.setText(wr.getTimezone());
-//        txtvTime.setText(wr.getCurrently().getTime());
-//        txtvDegree.setText(wr.getCurrently().getTemperature() + "°");
-//        txtvHumidityValue.setText(wr.getCurrently().getHumidity() + "%");
-//        txtvRainValue.setText(wr.getCurrently().getPrecipProbability() + "%");
-//        txtvWeather.setText(wr.getCurrently().getSummary());
+
+
+        Integer img = imgs.get(wr.getCurrently().getIcon());
+        if (img == null)
+            img = R.drawable.sunny;
+        imgvWeather.setImageResource(img);
+        txtvTime.setText(String.format(
+            locale,
+            "%1$tT %1$td/%1$tm/%1$tY",
+            new Date(wr.getCurrently().getTime() * 1000L)
+        ));
+        txtvDegree.setText(String.format(
+            locale,
+            "%.0f",
+            farenheitToCelsius(wr.getCurrently().getTemperature())
+        ));
+        txtvHumidityValue.setText(String.format(
+            locale,
+            "%.2f%%",
+            wr.getCurrently().getHumidity()
+        ));
+        txtvRainValue.setText(String.format(
+            locale,
+            "%.2f%%",
+            wr.getCurrently().getPrecipProbability()
+        ));
+        txtvWeather.setText(wr.getCurrently().getSummary());
+    }
+
+    private double farenheitToCelsius(double temperature) {
+        return (temperature - 32) * 5 / 9;
     }
 }

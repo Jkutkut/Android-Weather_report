@@ -11,8 +11,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your latitude"
-        android:inputType="numberDecimal"
+        android:hint="@string/enter_your_latitude"
+        android:inputType="numberSigned|numberDecimal"
         android:id="@+id/etxtLatitude"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
-        android:hint="Enter your longitude"
-        android:inputType="numberDecimal"
+        android:hint="@string/enter_your_longitude"
+        android:inputType="numberSigned|numberDecimal"
         android:id="@+id/etxtLongitude"
         app:layout_constraintTop_toBottomOf="@+id/etxtLatitude"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +35,19 @@
         android:layout_marginTop="@dimen/margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check Weather"
+        android:text="@string/check_weather"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etxtLongitude" />
+
+    <TextView
+        android:id="@+id/txtvExamples"
+        android:textSize="@dimen/sub_title_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

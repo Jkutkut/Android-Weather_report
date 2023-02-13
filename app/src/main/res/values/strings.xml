@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Android-Weather_Report</string>
+    <string name="enter_your_latitude">Enter your latitude</string>
+    <string name="enter_your_longitude">Enter your longitude</string>
+    <string name="check_weather">Check Weather</string>
+    <string-array name="loc_examples">
+        <item>Los Angeles: 37.8267, -122.4233</item>
+        <item>San Francisco: 37.7749, -122.4194</item>
+        <item>Seattle: 47.6062, -122.3321</item>
+        <item>Chicago: 41.8781, -87.6298</item>
+        <item>New York: 40.7128, -74.0060</item>
+        <item>London: 51.5074, -0.1278</item>
+        <item>Paris: 48.8566, 2.3522</item>
+        <item>Rome: 41.9028, 12.4964</item>
+        <item>Beijing: 39.9042, 116.4074</item>
+        <item>Tokyo: 35.6762, 139.6503</item>
+        <item>Madrid: 40.4168, -3.7038</item>
+    </string-array>
 </resources>
