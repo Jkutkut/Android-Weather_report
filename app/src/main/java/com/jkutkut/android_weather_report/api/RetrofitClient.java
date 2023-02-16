@@ -1,4 +1,4 @@
-package com.jkutkut.android_weather_report.model;
+package com.jkutkut.android_weather_report.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

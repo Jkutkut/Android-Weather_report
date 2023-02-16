@@ -2,20 +2,17 @@ package com.jkutkut.android_weather_report;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jkutkut.android_weather_report.model.WeatherReport;
+import com.jkutkut.android_weather_report.api.WeatherReport;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-public class WeatherResult extends AppCompatActivity {
+public class WeatherResultActivity extends AppCompatActivity {
 
     public static final String KEY_OBJ = "KEY_OBJ";
 
@@ -38,7 +35,13 @@ public class WeatherResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_result);
 
-        WeatherReport wr = (WeatherReport) getIntent().getSerializableExtra(KEY_OBJ);
+        WeatherReport wr;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            wr = getIntent().getParcelableExtra(KEY_OBJ, WeatherReport.class);
+        }
+        else {
+            wr = getIntent().getParcelableExtra(KEY_OBJ); // @deprecated
+        }
 
         final TextView txtvCity = findViewById(R.id.txtvCity);
         final ImageView imgvWeather = findViewById(R.id.imgvWeather);
@@ -52,7 +55,11 @@ public class WeatherResult extends AppCompatActivity {
 
         txtvCity.setText(wr.getTimezone());
 
-
+        System.out.println(wr.getCurrently());
+        if (wr.getCurrently() == null) {
+            txtvWeather.setText("No weather data available");
+            return;
+        }
         Integer img = imgs.get(wr.getCurrently().getIcon());
         if (img == null)
             img = R.drawable.sunny;

@@ -1,20 +1,18 @@
 package com.jkutkut.android_weather_report;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jkutkut.android_weather_report.model.RetrofitClient;
-import com.jkutkut.android_weather_report.model.WeatherAPI;
-import com.jkutkut.android_weather_report.model.WeatherReport;
+import com.jkutkut.android_weather_report.api.RetrofitClient;
+import com.jkutkut.android_weather_report.api.WeatherAPI;
+import com.jkutkut.android_weather_report.api.WeatherReport;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         TextView txtvExamples = findViewById(R.id.txtvExamples);
         etxtLatitude = findViewById(R.id.etxtLatitude);
         etxtLongitude = findViewById(R.id.etxtLongitude);
+
+        etxtLatitude.setText("40.7128");
+        etxtLongitude.setText("-3.70");
 
         btnSend.setOnClickListener(v -> requestWeather());
 
@@ -77,10 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("Result: ", "Error" + response.code());
                 } else {
                     WeatherReport wr = response.body();
-                    Log.i("Result: ", wr.toString());
-                    Intent i = new Intent(MainActivity.this, WeatherResult.class);
+                    Intent i = new Intent(MainActivity.this, WeatherResultActivity.class);
                     Bundle b = new Bundle();
-                    b.putSerializable(WeatherResult.KEY_OBJ, wr);
+                    b.putParcelable(WeatherResultActivity.KEY_OBJ, wr);
                     i.putExtras(b);
                     startActivity(i);
                 }

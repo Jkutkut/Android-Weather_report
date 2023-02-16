@@ -1,4 +1,4 @@
-package com.jkutkut.android_weather_report.model;
+package com.jkutkut.android_weather_report.api;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

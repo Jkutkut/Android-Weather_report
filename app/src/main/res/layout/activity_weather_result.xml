@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/margin"
     android:background="@color/bg"
-    tools:context=".WeatherResult">
+    tools:context=".WeatherResultActivity">
 
     <TextView
         android:layout_width="wrap_content"
