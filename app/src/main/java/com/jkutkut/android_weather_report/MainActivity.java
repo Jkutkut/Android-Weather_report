@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.jkutkut.android_weather_report.api.RetrofitClient;
 import com.jkutkut.android_weather_report.api.WeatherAPI;
 import com.jkutkut.android_weather_report.api.WeatherReport;
+import com.jkutkut.android_weather_report.model.WeatherReportWrapper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     WeatherReport wr = response.body();
                     Intent i = new Intent(MainActivity.this, WeatherResultActivity.class);
                     Bundle b = new Bundle();
-                    b.putParcelable(WeatherResultActivity.KEY_OBJ, wr);
+                    b.putParcelable(WeatherResultActivity.KEY_OBJ, new WeatherReportWrapper(wr));
                     i.putExtras(b);
                     startActivity(i);
                 }

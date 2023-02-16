@@ -1,14 +1,9 @@
 package com.jkutkut.android_weather_report.api;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CurrentWeather implements Parcelable {
+public class CurrentWeather{
 
     @SerializedName("time")
     @Expose
@@ -64,38 +59,6 @@ public class CurrentWeather implements Parcelable {
 
     public CurrentWeather() {
     }
-
-    protected CurrentWeather(Parcel in) {
-        time = in.readInt();
-        summary = in.readString();
-        icon = in.readString();
-        precipIntensity = in.readDouble();
-        precipProbability = in.readDouble();
-        temperature = in.readDouble();
-        apparentTemperature = in.readDouble();
-        dewPoint = in.readDouble();
-        humidity = in.readDouble();
-        pressure = in.readDouble();
-        windSpeed = in.readDouble();
-        windGust = in.readDouble();
-        windBearing = in.readInt();
-        cloudCover = in.readDouble();
-        uvIndex = in.readDouble();
-        visibility = in.readDouble();
-        ozone = in.readDouble();
-    }
-
-    public static final Creator<CurrentWeather> CREATOR = new Creator<CurrentWeather>() {
-        @Override
-        public CurrentWeather createFromParcel(Parcel in) {
-            return new CurrentWeather(in);
-        }
-
-        @Override
-        public CurrentWeather[] newArray(int size) {
-            return new CurrentWeather[size];
-        }
-    };
 
     public Integer getTime() {
         return time;
@@ -231,33 +194,5 @@ public class CurrentWeather implements Parcelable {
 
     public void setOzone(Double ozone) {
         this.ozone = ozone;
-    }
-
-    // Parcelable implementation
-
-    @Override
-    public int describeContents() {
-        return 0x0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeInt(time);
-        dest.writeString(summary);
-        dest.writeString(icon);
-        dest.writeDouble(precipIntensity);
-        dest.writeDouble(precipProbability);
-        dest.writeDouble(temperature);
-        dest.writeDouble(apparentTemperature);
-        dest.writeDouble(dewPoint);
-        dest.writeDouble(humidity);
-        dest.writeDouble(pressure);
-        dest.writeDouble(windSpeed);
-        dest.writeDouble(windGust);
-        dest.writeInt(windBearing);
-        dest.writeDouble(cloudCover);
-        dest.writeDouble(uvIndex);
-        dest.writeDouble(visibility);
-        dest.writeDouble(ozone);
     }
 }

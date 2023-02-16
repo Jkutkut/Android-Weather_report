@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jkutkut.android_weather_report.api.WeatherReport;
+import com.jkutkut.android_weather_report.model.WeatherReportWrapper;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -36,12 +37,13 @@ public class WeatherResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather_result);
 
         WeatherReport wr;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            wr = getIntent().getParcelableExtra(KEY_OBJ, WeatherReport.class);
-        }
-        else {
-            wr = getIntent().getParcelableExtra(KEY_OBJ); // @deprecated
-        }
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+//            wr = getIntent().getParcelableExtra(KEY_OBJ, WeatherReport.class);
+//        }
+//        else {
+//            wr = getIntent().getParcelableExtra(KEY_OBJ); // @deprecated
+//        }
+        wr = ((WeatherReportWrapper) getIntent().getParcelableExtra(KEY_OBJ)).unwrap();
 
         final TextView txtvCity = findViewById(R.id.txtvCity);
         final ImageView imgvWeather = findViewById(R.id.imgvWeather);
